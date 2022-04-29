@@ -1,0 +1,117 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+@using TescoSW.OW.Remoting
+@using URDemo.Shared
+@inject IBLAuthentication blAuthentication
+@inject IBLDTOManager blManager
+
+<h1>Faktury</h1>
+
+@if (invoices == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Číslo faktury</th>
+                <th>Zákazník</th>
+                <th>Datum vystavení</th>
+                <th>Hodnota</th>
+                <th>Hodnota s DPH</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invoice in invoices)
+            {
+                <tr @onclick="@(async e => await onSelect(invoice.ID))" style="cursor: pointer;">
+                    <td>@invoice.InvoiceNumber</td>
+                    <td>@invoice.CustomerName</td>
+                    <td>@invoice.IssueDate</td>
+                    <td>@invoice.TotalAmount</td>
+                    <td>@invoice.TotalAmountIncludingVat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (invoiceLines == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Množství</th>
+                <th>Jednotka</th>
+                <th>Popis</th>
+                <th>Cena za jednotku</th>
+                <th>DPH</th>
+                <th>Celková cena</th>
+                <th>Celková cena s DPH</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in invoiceLines)
+            {
+                <tr>
+                    <td>@line.Quantity</td>
+                    <td>@line.MeasurementUnit</td>
+                    <td>@line.Description</td>
+                    <td>@line.PricePerUnit</td>
+                    <td>@line.VAT</td>
+                    <td>@line.TotalPrice</td>
+                    <td>@line.TotalPriceWithVAT</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Invoice[]? invoices;
+    private InvoiceLine[]? invoiceLines;
+    private long? selectedInvoice;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await blAuthentication.Login("Demo", "Demo", "");
+
+        invoices = await (  
+                            from i in blManager.Query<Invoice>()
+                            where i.ID != 0
+                            orderby i.InvoiceNumber
+                            select i
+                         //).Take(5).ToArrayAsync();
+                         ).ToArrayAsync();
+
+        selectedInvoice = invoices.FirstOrDefault()?.ID;
+
+        await loadLines();
+    }
+
+
+    private async Task onSelect(long id)
+    {
+        Console.WriteLine("Select ID" + id);
+        selectedInvoice = id;
+        await loadLines();
+    }
+
+    private async Task loadLines()
+    {
+        if (selectedInvoice is not null)
+            invoiceLines = await (
+                   from i in blManager.Query<InvoiceLine>()
+                   where i.InvoiceID == selectedInvoice.Value
+                   orderby i.ID
+                   select i
+            ).ToArrayAsync();
+    }
+}

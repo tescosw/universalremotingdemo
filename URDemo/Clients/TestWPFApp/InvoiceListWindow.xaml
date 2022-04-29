@@ -1,0 +1,39 @@
+﻿<Window x:Class="URDemo.TestWPFApp.InvoiceListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:URDemo.TestWPFApp"
+        mc:Ignorable="d"
+        Title="Faktury" Height="450" Width="800"
+        Language="cs-CZ" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="4" Margin="4,0,5,5" Grid.Column="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Datum vystavení" Binding="{Binding Datum_vystaveni}"/>
+                <DataGridTextColumn Header="Číslo faktury" Binding="{Binding Cislo_faktury}"/>
+                <DataGridTextColumn Header="Odběratel" Binding="{Binding Odberatel.Nazev}"/>
+                <DataGridTextColumn Header="Suma" Binding="{Binding Suma_celkem, StringFormat=C}"/>
+                <DataGridTextColumn Header="Suma s DPH" Binding="{Binding Suma_s_DPH, StringFormat=C}"/>
+                <DataGridTextColumn Header="Datum zaplacení" Binding="{Binding Datum_zaplaceni}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ProgressBar x:Name="progressBar" Grid.Row="2" Grid.ColumnSpan="4" Height="20" Margin="100,0,100,0" Grid.Column="0" IsIndeterminate="True" Visibility="Collapsed" />
+        <TextBox x:Name="filterBox" Grid.Row="1" Grid.Column="0" Margin="5,0,5,5" Grid.ColumnSpan="4" TextChanged="filterBox_TextChanged"/>
+        <Label Content="Filter" Grid.Row="0" Grid.Column="0" Margin="5,0,5,0"/>
+        <Button x:Name="newInvoiceButton" Content="Nový" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Click="newInvoiceButton_Click" />
+        <Button x:Name="showInvoiceButton" Content="Zobrazit" Grid.Row="0" Grid.Column="2" Margin="5,5,5,5" Click="showInvoiceButton_Click" />
+        <Button x:Name="markAsPaidButton" Content="Označit jako zaplacenou" Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Click="markAsPaidButton_Click" />
+    </Grid>
+</Window>
