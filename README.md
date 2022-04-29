@@ -1,31 +1,30 @@
-# Introduction 
-There are several examples in the project that show how Universal Remoting can be used.
+# Úvod 
+V projektu je několik příkladů, které ukazují, jak lze Universal Remoting použít.
 
-# Project description
-The examples in the project are written for .NET 6.
-The ideal development environment for running the project is Visual Studio 2022. 
-The Universal Remoting packages themselves are in .NET Standard 2.0, so you can use them in almost any custom project.
+# Popis projektu
+Příklady v projektu jsou napsány pro .NET 6.
+Ideálním vývojovým prostředím pro spuštění projektu je Visual Studio 2022. 
+Samotné balíčky Universal Remoting jsou ve verzi .NET Standard 2.0, takže je můžete použít téměř v jakémkoli vlastním projektu.
 
-In the Clients folder there are several examples of using Universal Remoting.
+Ve složce Clients je několik příkladů použití Universal Remoting.
 
 ####TestBlazor
-A simple sample client in WebAssembly Blazor.
+Jednoduchý ukázkový klient ve WebAssembly Blazoru.
 
 ####TestWebAPI
-A sample of a simple WebAPI server that uses Universal Remoting to get data from a data server and forward it in a custom format.
+Ukázka jednoduchého WebAPI serveru, který pomocí Universal Remotingu získává data z datového serveru a přeposílá je ve vlastním formátu.
 
 ####TestWPFApp
-A slightly more extensive example that shows how Universal Remoting can be used in a client environment. The sample shows how you can use binding properties of object instances on the server to edit fields in XAML.
-For example: `<TextBox x:Name="invoiceNumber" Text="{Binding Cislo_faktury}"></TextBox>`.
-Various examples of reading data from the server are displayed on different windows. By directly referencing properties in server classes, or by creating a local DTO object and reading the data via LINQ.
+Trochu rozsáhlejší příklad, který ukazuje, jak je možné Universal Remoting použít v klientském prostředí. V ukázce je vidět, jak je možné použít binding vlastností instancí objektů na serveru do editačních polí v XAML.
+Například: `<TextBox x:Name="invoiceNumber" Text="{Vazba Cislo_faktury}"></TextBox>`.
+V různých oknech jsou ukázány různé příklady k čtení dat ze serveru. Přímím odkazováním se na vlastnosti v serverových třídách, nebo vytvoření lokálního DTO objektu a čtení dat přes LINQ.
 
-
-# Build and Test
+# Sestavení a testování
 
 ####TestBlazor
-To run the TestBlazor example, you must select Startup Project URDemo.Server and profile URDemo.TestBlazor
+Pro spuštění příkladu TestBlazor je nutné vybrat Startup Project URDemo.Server a profil URDemo.TestBlazor.
 
-####TestWebAPI and TestWPFApp
-Select URDemo.Server and profile OnlyConsole as the Startup Project.
+####TestWebAPI a TestWPFApp
+Jako Startup Project vyberte URDemo.Server a profil OnlyConsole.
 
-In the Solution Explorer, right-click Solution and select Properties from the pop-up menu. In the Startup Project section, select Multiple startup projects. In the Action column, select Start for the URDemo.Server project and then TestWebAPI or TestWPFApp, whichever you want to run.
+V panelu Solution Explorer klikněte pravím tlačítkem na Solution a v pop-up menu vyberte položku Properties. V sekci Startup Project vyberte Multiple startup projects. Ve sloupci Action vyberte Start u projektu URDemo.Server a pak u TestWebAPI, nebo TestWPFApp, podle toho, který chcete spustit.
