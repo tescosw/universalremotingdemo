@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "URDemo.Server": {
+    "URDemo.TestBlazor": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
@@ -18,7 +18,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "URDemo.Swagger": {
+    "Swagger": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
@@ -28,7 +28,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "URDemo.OnlyConsole": {
+    "OnlyConsole": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7181;http://localhost:5181",
