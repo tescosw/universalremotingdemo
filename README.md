@@ -25,6 +25,6 @@ V různých oknech jsou ukázány různé příklady k čtení dat ze serveru. P
 Pro spuštění příkladu TestBlazor je nutné vybrat Startup Project URDemo.Server a profil URDemo.TestBlazor.
 
 ####TestWebAPI a TestWPFApp
-Jako Startup Project vyberte URDemo.Server a profil OnlyConsole.
+U projektu URDemo.Server nastavte aktivní profil OnlyConsole.
 
 V panelu Solution Explorer klikněte pravím tlačítkem na Solution a v pop-up menu vyberte položku Properties. V sekci Startup Project vyberte Multiple startup projects. Ve sloupci Action vyberte Start u projektu URDemo.Server a pak u TestWebAPI, nebo TestWPFApp, podle toho, který chcete spustit.

@@ -26,6 +26,6 @@ Various examples of reading data from the server are displayed on different wind
 To run the TestBlazor example, you must select Startup Project URDemo.Server and profile URDemo.TestBlazor
 
 ####TestWebAPI and TestWPFApp
-Select URDemo.Server and profile OnlyConsole as the Startup Project.
+For the URDemo.Server project, set the OnlyConsole profile as active.
 
 In the Solution Explorer, right-click Solution and select Properties from the pop-up menu. In the Startup Project section, select Multiple startup projects. In the Action column, select Start for the URDemo.Server project and then TestWebAPI or TestWPFApp, whichever you want to run.
