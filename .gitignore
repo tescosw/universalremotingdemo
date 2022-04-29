@@ -15,6 +15,7 @@
 *.partial
 *.dpk
 *.cache
+*.sqlite
 
 # adresare
 .vs/
