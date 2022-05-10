@@ -1,0 +1,29 @@
+# typy souboru
+*.user
+*.suo
+*.vspscc
+*.vssscc
+*.nupkg
+*.nuspec
+*.webinfo
+*.bat
+*.dll
+*.exe
+*.config
+!*example.config
+!*template*.config
+*.partial
+*.dpk
+*.cache
+*.sqlite
+
+# adresare
+.vs/
+bin/
+obj/
+packages/
+build/
+
+# specialni soubory
+!.vs/task.vs.json
+Nuget.Build.props

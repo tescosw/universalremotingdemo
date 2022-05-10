@@ -1,0 +1,60 @@
+﻿<Window x:Class="URDemo.TestWPFApp.InvoiceLineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:URDemo.TestWPFApp"
+        mc:Ignorable="d"
+        Language="cs-CZ"
+        Title="Řádek faktury" Height="350" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Label Content="Množství" Grid.Row="0" Grid.Column="0" Margin="5,0,5,0"/>
+            <TextBox Text="{Binding Mnozstvi}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="1" ></TextBox>
+            <Label Content="Jednotka" Grid.Row="0" Grid.Column="1" Margin="5,0,5,0"/>
+            <Grid Grid.Column="1" Grid.Row="1" Margin="5,0,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="invoiceCustomer" Text="{Binding Jednotka.Kod}" IsEnabled="False"></TextBox>
+                <Button x:Name="selectMeasureUnitButton" Content="..." Grid.Column="1" Margin="5,0,5,0" Click="selectMeasureUnitButton_Click" ></Button>
+            </Grid>
+            <Label Content="Popis" Grid.Row="2" Grid.Column="0" Margin="5,0,5,0"/>
+            <TextBox  Text="{Binding Popis}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
+            <Label Content="Cena za jednotku" Grid.Row="4" Grid.Column="0" Margin="5,0,5,0"/>
+            <TextBox  Text="{Binding Cena_za_jednotku}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="5"></TextBox>
+            <Label Content="DPH" Grid.Row="4" Grid.Column="1" Margin="5,0,5,0"/>
+            <TextBox  Text="{Binding DPH}" Margin="5,0,5,5" Grid.Column="1" Grid.Row="5" ></TextBox>
+            <Label Content="Cena celkem" Grid.Row="6" Grid.Column="0" Margin="5,0,5,0"/>
+            <TextBox  Text="{Binding Cena_celkem}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="7"></TextBox>
+            <Label Content="Cena celkem s DPH" Grid.Row="6" Grid.Column="1" Margin="5,0,5,0"/>
+            <TextBox  Text="{Binding Cena_celkem_s_DPH}" Margin="5,0,5,5" Grid.Column="1" Grid.Row="7" ></TextBox>
+        </Grid>
+        <Button x:Name="okButton" Content="OK" Grid.Row="3" Grid.Column="1" Margin="5,0,5,5" IsDefault="True" Click="okButton_Click"></Button>
+        <Button x:Name="cancelButton" Content="Storno" Grid.Row="3" Grid.Column="2" Margin="5,0,5,5" IsCancel="True"></Button>
+    </Grid>
+</Window>
