@@ -7,7 +7,7 @@ Samotné [nuget balíčky pro Universal Remoting](https://www.nuget.org/packages
 * Adresář **Clients** - obsahuje příklady použití Universal Remoting.
 * Adresář **Server** - obsahuje demo aplikační server.
 
-#Příklady použití (adresář Clients)
+#Příklady (adresář Clients)
 
 ##TestBlazor
 Jednoduchý, ukázkový klient vyhotovený za využití [Microsoft ASP.NET Core Blazor](https://docs.microsoft.com/cs-cz/aspnet/core/blazor/?view=aspnetcore-6.0) a [WebAssembly](https://webassembly.org/).
