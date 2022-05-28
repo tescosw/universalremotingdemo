@@ -20,6 +20,9 @@ namespace URDemo.Shared
         public decimal? TotalAmount { get; set; }
         [DataMember(Name = "Suma_s_DPH")]
         public decimal? TotalAmountIncludingVat { get; set; }
+        [DataMember(Name = "Datum_zaplaceni")]
+        public DateTime? PaymentDate { get; set; }
+        
         public override string ToString()
         {
             return $"{ID}, {InvoiceNumber}, {CustomerName}, {IssueDate}, {TotalAmount}, {TotalAmountIncludingVat}";
