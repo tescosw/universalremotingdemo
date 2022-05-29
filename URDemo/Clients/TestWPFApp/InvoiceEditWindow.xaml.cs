@@ -115,7 +115,7 @@ namespace URDemo.TestWPFApp
         {
             if (dataGrid.SelectedItem != null)
             {
-                IBLEntity obj = await context.Get(((dynamic)dataGrid.SelectedItem).Id, "CRadek_faktury");
+                IBLEntity obj = await context.GetAsync(((dynamic)dataGrid.SelectedItem).Id, "CRadek_faktury");
                 await obj.DeleteAsync();
                 await LoadGrid();
                 edited = true;

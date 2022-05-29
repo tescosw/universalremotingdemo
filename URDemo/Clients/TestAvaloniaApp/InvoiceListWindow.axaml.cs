@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 using TescoSW.OW.Remoting;
@@ -59,9 +60,16 @@ namespace URDemo.TestAvaloniaApp
             throw new System.NotImplementedException();
         }
 
-        private void showInvoiceButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private async void showInvoiceButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var dataGrid = this.Find<DataGrid>("dataGrid");
+            if (dataGrid.SelectedItem != null)
+            {
+                long id = ((Invoice)dataGrid.SelectedItem).ID;
+                var windows = ActivatorUtilities.CreateInstance<InvoiceEditWindow>(serviceProvider, new object[] { id, });
+                if (await windows.ShowDialog<bool>(this) == true)
+                    await LoadData();
+            }
         }
 
         private void newInvoiceButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

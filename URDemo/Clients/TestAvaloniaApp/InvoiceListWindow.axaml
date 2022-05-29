@@ -18,7 +18,7 @@
 			<RowDefinition Height="30" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<DataGrid x:Name="dataGrid" Items="{Binding TestMJ}" AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="4" Margin="4,0,5,5" Grid.Column="0">
+		<DataGrid x:Name="dataGrid"  IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="4" Margin="4,0,5,5" Grid.Column="0">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Datum vystavení" Binding="{Binding IssueDate}"/>
 				<DataGridTextColumn Header="Číslo faktury" Binding="{Binding InvoiceNumber}"/>
