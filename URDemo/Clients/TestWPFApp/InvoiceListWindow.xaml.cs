@@ -57,7 +57,7 @@ namespace URDemo.TestWPFApp
             if (dataGrid.SelectedItem != null)
             {
                 await using var context = await blManager.CreateContextAsync();
-                await using IBLEntity obj = await context.Get(((dynamic)dataGrid.SelectedItem).Id, "CFaktura");
+                await using IBLEntity obj = await context.GetAsync(((dynamic)dataGrid.SelectedItem).Id, "CFaktura");
                 await obj.ExecuteMethodAsync("Oznacit_jako_zaplacenou");
                 await LoadData();
             }

@@ -41,12 +41,12 @@ namespace URDemo.TestWPFApp
         {
             if (id <= 0)
             {
-                var obj = await context.New("CRadek_Faktury");
+                var obj = await context.NewAsync("CRadek_Faktury");
                 await obj.SetValueAsync("Faktura.ID", invoiceId);
                 DataContext = obj;
             }
             else
-                DataContext = await context.Get(id, "CRadek_Faktury");
+                DataContext = await context.GetAsync(id, "CRadek_Faktury");
         }
 
         private async void selectMeasureUnitButton_Click(object sender, RoutedEventArgs e)

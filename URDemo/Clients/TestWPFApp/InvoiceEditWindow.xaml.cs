@@ -40,10 +40,10 @@ namespace URDemo.TestWPFApp
         {
             context = await blManager.CreateContextAsync();
             if (id <= 0)
-                DataContext = await context.New("CFaktura");
+                DataContext = await context.NewAsync("CFaktura");
             else
             {
-                DataContext = await context.Get(id, "CFaktura");
+                DataContext = await context.GetAsync(id, "CFaktura");
                 await LoadGrid();
             }
         }
@@ -72,7 +72,7 @@ namespace URDemo.TestWPFApp
                 await obj.ApplyUpdatesAsync();
                 id = (long) await obj.GetValueAsync("ID");
             }
-            var windows = ActivatorUtilities.CreateInstance<InvoiceLineWindow>(serviceProvider, new object[] { -1L, id, context, });
+            var windows = ActivatorUtilities.CreateInstance<InvoiceLineWindow>(serviceProvider, new object[] { -1L, id, context!, });
             if (windows.ShowDialog() == true)
             {
                 await LoadGrid();
@@ -84,7 +84,7 @@ namespace URDemo.TestWPFApp
         {
             if (dataGrid.SelectedItem != null)
             {
-                var windows = ActivatorUtilities.CreateInstance<InvoiceLineWindow>(serviceProvider, new object[] { ((dynamic)dataGrid.SelectedItem).Id, id, context, });
+                var windows = ActivatorUtilities.CreateInstance<InvoiceLineWindow>(serviceProvider, new object[] { ((dynamic)dataGrid.SelectedItem).Id, id, context!, });
                 if (windows.ShowDialog() == true)
                 {
                     await LoadGrid();
@@ -115,7 +115,7 @@ namespace URDemo.TestWPFApp
         {
             if (dataGrid.SelectedItem != null)
             {
-                IBLEntity obj = await context.Get(((dynamic)dataGrid.SelectedItem).Id, "CRadek_faktury");
+                IBLEntity obj = await context!.GetAsync(((dynamic)dataGrid.SelectedItem).Id, "CRadek_faktury");
                 await obj.DeleteAsync();
                 await LoadGrid();
                 edited = true;
