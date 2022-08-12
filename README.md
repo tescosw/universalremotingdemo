@@ -25,6 +25,6 @@ aplikačního serveru, například přímým odkazováním se na vlastnosti v se
 ## TestBlazor
 Pro spuštění příkladu TestBlazor je nutné vybrat jako Startup Project *URDemo.Server* a profil *URDemo.TestBlazor*.
 
-## estWebAPI a TestWPFApp
+## TestWebAPI a TestWPFApp
 U projektu *URDemo.Server* nastavte aktivní profil *OnlyConsole*. V panelu Solution Explorer klikněte pravím tlačítkem na Solution a v pop-up menu vyberte položku Properties. V sekci Startup Project vyberte Multiple startup projects. 
 Ve sloupci Action vyberte *Start* u projektu *URDemo.Server* a pak u *TestWebAPI*, nebo *TestWPFApp*, podle toho, který chcete spustit.
