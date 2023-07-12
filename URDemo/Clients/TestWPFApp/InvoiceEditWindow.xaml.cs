@@ -53,10 +53,15 @@ namespace URDemo.TestWPFApp
         private async Task LoadGrid()
         {
             progressBar.Visibility = Visibility.Visible;
-            var condition = string.IsNullOrEmpty(filterBox.Text) ? $"Faktura.ID = {id}" : $"Faktura.ID = {id} and :Linguistic.Like(Popis, '%{filterBox.Text}%')";
+            var condition = getCondition();
             var source = await blManager.GetOnlineDataRows("CRadek_Faktury", new string[] { "Mnozstvi", "Jednotka.Kod", "Popis", "Cena_za_jednotku", "Cena_celkem", "DPH", "Cena_celkem_s_DPH" }, condition, new DataRowsParams { OrderBy = new string[] { "id" } });
             dataGrid.ItemsSource = source;
             progressBar.Visibility = Visibility.Collapsed;
+        }
+
+        private string getCondition()
+        {
+            return string.IsNullOrEmpty(filterBox.Text) ? $"Faktura.ID = {id}" : $"Faktura.ID = {id} and :Linguistic.Like(Popis, '%{filterBox.Text}%')";
         }
 
         private async void selectCustomerButton_Click(object sender, RoutedEventArgs e)
@@ -135,6 +140,42 @@ namespace URDemo.TestWPFApp
                 RestoreDirectory = true,
                 Filter = "PDF file|*.pdf",
                 DefaultExt = "pdf",
+            };
+            if (dialog.ShowDialog() == true && !string.IsNullOrWhiteSpace(dialog.FileName))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(dialog.FileName)!);
+                using var file = dialog.OpenFile();
+                report.CopyTo(file);
+            }
+        }
+
+        private async void exportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var @params = new TableExportParams()
+            {
+                ExportType = ExportOutputTypes.CSV, // desired type of the export file - CSV, XLSX for export
+                EntityTypeName = "CRadek_Faktury",
+                Condition = getCondition(), // condition for data selection
+                OrderBy = new[] { "id" },
+                Attributes = new TableExportAttrParams[] // attributes to select from the entity (analogous to GetOnlineDataRows)
+                {
+                        new() { AttributeName = "Mnozstvi", },
+                        new() { AttributeName = "Jednotka.Kod", },
+                        new() { AttributeName = "Popis", },
+                        new() { AttributeName = "Cena_za_jednotku", },
+                        new() { AttributeName = "Cena_celkem", },
+                        new() { AttributeName = "DPH", },
+                        new() { AttributeName = "Cena_celkem_s_DPH", },
+                }
+            };
+
+            using var report = await reports.GetFrameExport(@params); // get list/frame export
+
+            var dialog = new SaveFileDialog()
+            {
+                RestoreDirectory = true,
+                Filter = "csv file|*.csv",
+                DefaultExt = "csv",
             };
             if (dialog.ShowDialog() == true && !string.IsNullOrWhiteSpace(dialog.FileName))
             {

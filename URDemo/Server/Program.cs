@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using TescoSW.DependencyInjection;
 using URDemo.Server.Data;
@@ -15,7 +16,7 @@ builder.Services.AddTestEFServerBLManager<DataContext>(options => {
     options.SearchedNamespaces = new[] { "URDemo.Server.Models" };
 });
 
-var mvcBuilder = builder.Services.AddControllersWithViews();
+var mvcBuilder = builder.Services.AddControllersWithViews().AddControllersAsServices();
 //Registrace testovacího API
 builder.Services.AddTestEFServerWebApi(mvcBuilder);
 builder.Services.AddHttpContextAccessor();
