@@ -7,5 +7,10 @@ namespace URDemo.Server.Models
         public string? Nazev { get; set; }
         public string? IC { get; set; }
         public string? DIC { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Nazev}, {IC}, {DIC}";
+        }
     }
 }

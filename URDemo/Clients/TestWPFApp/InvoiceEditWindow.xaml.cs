@@ -1,18 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Win32;
 using TescoSW.OW.Remoting;
+using TescoSW.OW.Remoting.Reports;
 
 namespace URDemo.TestWPFApp
 {
@@ -25,25 +19,33 @@ namespace URDemo.TestWPFApp
         private readonly bool newItem;
         private readonly IBLManager blManager;
         private readonly IServiceProvider serviceProvider;
+        private readonly IReports reports;
         private IBLEntitiesContext? context;
         private bool edited = false;
 
-        public InvoiceEditWindow(long id, IBLManager blManager, IServiceProvider serviceProvider)
+        public InvoiceEditWindow(long id, IBLManager blManager, IServiceProvider serviceProvider, IReports reports)
         {
+            InitializeComponent();
             newItem = (this.id = id) == -1;
+            if (newItem)
+                printButton.Visibility = Visibility.Hidden;
+
             this.blManager = blManager;
             this.serviceProvider = serviceProvider;
-            InitializeComponent();
+            this.reports = reports;
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             context = await blManager.CreateContextAsync();
-            if (id <= 0)
+            if (newItem)
+            {
                 DataContext = await context.NewAsync("CFaktura");
+            }
             else
             {
                 DataContext = await context.GetAsync(id, "CFaktura");
+                printButton.IsEnabled = true;
                 await LoadGrid();
             }
         }
@@ -70,7 +72,7 @@ namespace URDemo.TestWPFApp
             {
                 var obj = ((IBLEntity)DataContext);
                 await obj.ApplyUpdatesAsync();
-                id = (long) await obj.GetValueAsync("ID");
+                id = (long)await obj.GetValueAsync("ID");
             }
             var windows = ActivatorUtilities.CreateInstance<InvoiceLineWindow>(serviceProvider, new object[] { -1L, id, context!, });
             if (windows.ShowDialog() == true)
@@ -119,6 +121,26 @@ namespace URDemo.TestWPFApp
                 await obj.DeleteAsync();
                 await LoadGrid();
                 edited = true;
+            }
+        }
+
+        private async void printButton_Click(object sender, RoutedEventArgs e)
+        {
+            var obj = (IBLEntity)DataContext;
+            // get entity detail report
+            using var report = await reports.GetDetailReport(obj, "FrameDetail1", "FRM.CFaktura.CFaktura", ReportOutputTypes.PDF);
+
+            var dialog = new SaveFileDialog()
+            {
+                RestoreDirectory = true,
+                Filter = "PDF file|*.pdf",
+                DefaultExt = "pdf",
+            };
+            if (dialog.ShowDialog() == true && !string.IsNullOrWhiteSpace(dialog.FileName))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(dialog.FileName)!);
+                using var file = dialog.OpenFile();
+                report.CopyTo(file);
             }
         }
     }

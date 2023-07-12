@@ -51,5 +51,10 @@ namespace URDemo.Server.Models
             }
             base.OnBeforeApplyUpdates(blObject, blManager);
         }
+
+        public override string ToString()
+        {
+            return $"{ID}, {Cislo_faktury}, {Odberatel?.Nazev}, {Datum_vystaveni}, {Suma_celkem}, {Suma_s_DPH}";
+        }
     }
 }
