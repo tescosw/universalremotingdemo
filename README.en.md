@@ -26,7 +26,7 @@ A simple example of [Microsoft ASP.NET Core Web API](https://docs.microsoft.com/
 A slightly more extensive example that shows how Universal Remoting can be used in a client application based on [Microsoft WPF](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-6.0). The sample shows how you can use binding
 properties of object on the server to edit fields in XAML, for example: `<TextBox x:Name="invoiceNumber" Text="{Binding Cislo_faktury}"></TextBox>`.
 Various examples of reading data from the application server are shown on different application windows, for example by directly referencing properties of server classes or by creating a local DTO object and reading
-the data via [LINQ](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/).
+the data via [LINQ](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/). It also shows how to use the [TescoSW.OW.Remoting.Reports](https://www.nuget.org/packages/TescoSW.OW.Remoting.Reports) package to print a list or detail report or export a list using the application server.
 
 ## Build and Test
 
