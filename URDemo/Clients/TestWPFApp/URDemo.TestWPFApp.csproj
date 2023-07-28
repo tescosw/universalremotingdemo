@@ -11,8 +11,9 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="TescoSW.OW.Remoting.BLEntities" Version="22.*" />
-		<PackageReference Include="TescoSW.OW.Remoting.Universal" Version="22.*" />
+		<PackageReference Include="TescoSW.OW.Remoting.BLEntities" Version="23.*" />
+		<PackageReference Include="TescoSW.OW.Remoting.Universal" Version="23.*" />
+		<PackageReference Include="TescoSW.OW.Remoting.Reports" Version="23.*" />
 	</ItemGroup>
 
 	<ItemGroup>

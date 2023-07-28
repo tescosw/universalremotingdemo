@@ -11,6 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using TescoSW.DependencyInjection;
+using TescoSW.OW.Remoting;
+using TescoSW.OW.Remoting.Reports;
 
 namespace URDemo.TestWPFApp
 {
@@ -55,7 +57,8 @@ namespace URDemo.TestWPFApp
                 .AddSingleUserCommunicator(configuration.GetSection("HttpCommunicator"))
                 .AddBLEntities()
                 .AddOWManager()
-                .AddOWAuthentication();
+                .AddOWAuthentication()
+                .AddReports();
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -9,8 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="TescoSW.OW.Remoting.Abstractions" Version="22.*" />
-		<PackageReference Include="TescoSW.OW.LocalDataCache.Abstractions" Version="22.*" />		
+		<PackageReference Include="TescoSW.OW.Remoting.Abstractions" Version="23.*" />
+		<PackageReference Include="TescoSW.OW.LocalDataCache.Abstractions" Version="23.*" />		
 	</ItemGroup>
 
 	<ItemGroup>

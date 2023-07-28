@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
-	<PackageReference Include="TescoSW.OW.Remoting.Universal" Version="22.*" />
-	<PackageReference Include="TescoSW.OW.Remoting.BLEntities" Version="22.*" />
+	<PackageReference Include="TescoSW.OW.Remoting.Universal" Version="23.*" />
+	<PackageReference Include="TescoSW.OW.Remoting.BLEntities" Version="23.*" />
   </ItemGroup>
 
   <ItemGroup>
