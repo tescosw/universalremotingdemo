@@ -17,10 +17,10 @@
     </PackageReference>
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
-	<PackageReference Include="TescoSW.DTO.REST" Version="23.*" />
-	<PackageReference Include="TescoSW.Global.LinqExtensions" Version="23.*" />
-	<PackageReference Include="TescoSW.Tests.TestEFServer.BLManager" Version="23.*" />
-	<PackageReference Include="TescoSW.Tests.TestEFServer.WebApi" Version="23.*" />
+	<PackageReference Include="TescoSW.DTO.REST" Version="*" />
+	<PackageReference Include="TescoSW.Global.LinqExtensions" Version="*" />
+	<PackageReference Include="TescoSW.Tests.TestEFServer.BLManager" Version="*" />
+	<PackageReference Include="TescoSW.Tests.TestEFServer.WebApi" Version="*" />
   </ItemGroup>
 
   <ItemGroup>    
