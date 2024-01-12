@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject TescoSW.OW.Remoting.IServiceInfo serviceInfo
 
 <div class="page">
     <div class="sidebar">
@@ -14,4 +15,34 @@
             @Body
         </article>
     </main>
+
+    <div style="position:fixed; bottom:0; left:0; width:100%; background-color:#f7f7f7;" class="d-flex align-items-center justify-content-between p-2">
+        <div class="w-50 text-start">
+            <div>Version: @version</div>
+        </div>
+        <div class="w-50 text-end">
+            <div>Server time: @serverTime.ToString("s")</div>
+        </div>
+    </div>
 </div>
+
+@code {
+    private string version = "";
+    private DateTime serverTime = DateTime.Now;
+    private System.Threading.Timer? timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        timer = new System.Threading.Timer(e => InvokeAsync(async () =>
+            {
+                version = await serviceInfo.GetVersionID();
+                serverTime = await serviceInfo.GetSystemDateTime();
+
+                StateHasChanged();
+            }),
+            null,
+            TimeSpan.Zero,
+            TimeSpan.FromSeconds(1)
+        );
+    }
+}
